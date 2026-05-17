@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
 
         //Set animator parameters
-        anim.SetBool("run", horizontalInput != 0);
+        anim.SetBool("Run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
 
         //Wall jump logic
@@ -88,5 +88,9 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
+    }
+    public bool canAttack()
+    {
+        return !onWall();
     }
 }

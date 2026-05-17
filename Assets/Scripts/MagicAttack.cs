@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject[] fireballs;
 
@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R) && cooldownTimer > attackCooldown && playerMovement.canAttack())
+        if (Input.GetKey(KeyCode.E) && cooldownTimer > attackCooldown && playerMovement.canAttack())
             Attack();
 
         cooldownTimer += Time.deltaTime;

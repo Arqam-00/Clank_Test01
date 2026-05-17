@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class MagicAttack : MonoBehaviour
 {
     [SerializeField] private float attackCooldown = 2f;
     [SerializeField] private Transform firePoint;
@@ -19,12 +19,12 @@ public class PlayerAttack : MonoBehaviour
     private void Update()
     {
         if (Input.GetKey(KeyCode.E) && cooldownTimer > attackCooldown && playerMovement.canAttack())
-            Attack();
+            MagicAttack_();
 
         cooldownTimer += Time.deltaTime;
     }
 
-    private void Attack()
+    private void MagicAttack_()
     {
         anim.SetTrigger("MagicAttack");
         cooldownTimer = 0;

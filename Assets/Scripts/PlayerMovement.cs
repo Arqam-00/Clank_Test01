@@ -6,11 +6,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+
+    [Header("Dash Settings")]
+    [SerializeField] private float dashSpeed = 100f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 1.2f;
+
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
     private float horizontalInput;
+    //Dash variables
+    public bool isDashing = false;
+    private float dashTimeLeft;
+    private float dashCooldownTimer;
 
     private void Awake()
     {
@@ -22,8 +32,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //Dash timer
+        if (isDashing)
+        {
+            dashTimeLeft -= Time.deltaTime;
+
+            if (dashTimeLeft <= 0)
+                EndDash();
+
+            return;
+        }
+
+        //Dash cooldown timer
+        if (dashCooldownTimer > 0)
+            dashCooldownTimer -= Time.deltaTime;
+
         horizontalInput = Input.GetAxis("Horizontal");
 
+        //Dash input
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0 && isGrounded())
+        {
+            StartDash();
+        }
         //Flip player when moving left-right
         if (horizontalInput > 0.01f)
             transform.localScale = Vector3.one;
@@ -35,14 +65,14 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("grounded", isGrounded());
 
         //Wall jump logic
-        if (wallJumpCooldown > 0.2f)
+        if (wallJumpCooldown > 0.2f && !isDashing)
         {
             body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
 
             if (onWall() && !isGrounded())
             {
                 body.gravityScale = 0;
-                body.linearVelocity = Vector2.zero;
+                body.linearVelocity = new Vector2(0f,- 0.7f);
             }
             else
                 body.gravityScale = 1.75f;
@@ -53,7 +83,30 @@ public class PlayerMovement : MonoBehaviour
         else
             wallJumpCooldown += Time.deltaTime;
     }
+    private void StartDash()
+    {
+        isDashing = true;
 
+        dashTimeLeft = dashDuration;
+        dashCooldownTimer = dashCooldown;
+
+        body.gravityScale = 0;
+
+        float dashDirection = transform.localScale.x;
+
+        body.linearVelocity = new Vector2(dashDirection * dashSpeed, 0f);
+
+        anim.SetTrigger("Dash");
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+
+        body.gravityScale = 1.75f;
+
+        body.linearVelocity = new Vector2(0f, body.linearVelocity.y);
+    }
     private void Jump()
     {
         if (isGrounded())

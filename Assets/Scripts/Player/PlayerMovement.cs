@@ -128,9 +128,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-    }
+    
     //Box Casting for ground and wall
     public bool isGrounded()
     {
@@ -147,5 +145,9 @@ public class PlayerMovement : MonoBehaviour
     public bool canAttack()
     {
         return !onWall();
+    }
+    public void PushUp(float force)
+    {
+        body.linearVelocity = new Vector2(body.linearVelocity.x, force);
     }
 }

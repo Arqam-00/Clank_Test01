@@ -244,8 +244,7 @@ public class NPC : MonoBehaviour
 
     private string GetFallbackDialogue(string playerMessage)
     {
-        playerMessage =
-            playerMessage.ToLower();
+        playerMessage = playerMessage.ToLower();
 
         if (playerMessage.Contains("hello") ||
             playerMessage.Contains("hi"))
@@ -253,7 +252,7 @@ public class NPC : MonoBehaviour
             return "Greetings traveler.";
         }
 
-        if (playerMessage.Contains("weapon"))
+        if (playerMessage.Contains("here"))
         {
             return "I forge the finest weapons in the kingdom.";
         }

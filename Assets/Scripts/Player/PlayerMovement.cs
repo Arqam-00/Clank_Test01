@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 1.2f;
 
+    private PlayerState PS;
+
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        PS = GetComponent<PlayerState>();
     }
 
     private void Update()
@@ -50,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
 
         //Dash input
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0 && isGrounded())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0 && isGrounded() && PS.can_dash)
         {
             StartDash();
         }

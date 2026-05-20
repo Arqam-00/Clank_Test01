@@ -12,16 +12,19 @@ public class MagicAttack : MonoBehaviour
     private Mana playermp;
     private float cooldownTimer = Mathf.Infinity;
 
+    private PlayerState PS;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playermp = GetComponent<Mana>();
+        PS = GetComponent<PlayerState>();
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.E) && cooldownTimer > attackCooldown && playerMovement.canAttack())
+        if (Input.GetKey(KeyCode.E) && cooldownTimer > attackCooldown && playerMovement.canAttack() && PS.can_cast)
             MagicAttack_();
         if (playermp.current_mana < 10)
         {

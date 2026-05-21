@@ -1,51 +1,55 @@
+using System.Collections;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] private float attackCooldown = 0.5f;
-    [SerializeField] private Transform attackPoint;
-    [SerializeField] private float attackRange = 1f;
-    [SerializeField] private int attackDamage = 1;
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private float AttackCooldown = 0.5f;
+    [SerializeField] private GameObject Hitbox;
+    [SerializeField] private float AttackDuration = 1.25f;
 
-    private Animator anim;
-    private PlayerMovement playerMovement;
-    private float cooldownTimer = Mathf.Infinity;
+    private Animator Anim;
+    private PlayerMovement PlayerMovement;
+    private float CooldownTimer = Mathf.Infinity;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
-        playerMovement = GetComponent<PlayerMovement>();
+        Anim = GetComponent<Animator>();
+        PlayerMovement = GetComponent<PlayerMovement>();
+
+        Hitbox.SetActive(false);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && cooldownTimer > attackCooldown && playerMovement.canAttack())
+        if (PlayerMovement.Freeze_)
         {
-            Attack_();
+            return;
+        }
+        if (Input.GetMouseButtonDown(0) &&
+            CooldownTimer > AttackCooldown &&
+            PlayerMovement.canAttack())
+        {
+            StartCoroutine(Attack_());
         }
 
-        cooldownTimer += Time.deltaTime;
+        CooldownTimer += Time.deltaTime;
     }
 
-    private void Attack_()
+    private IEnumerator Attack_()
     {
-        // Play attack animation
-        if(playerMovement.isGrounded())
-            anim.SetTrigger("Attack");
+        Hitbox.SetActive(true);
+
+        if (PlayerMovement.isGrounded())
+            Anim.SetTrigger("Attack");
         else
-            anim.SetTrigger("Jmp_Attack");
-        cooldownTimer = 0;
+            Anim.SetTrigger("Jmp_Attack");
+        CooldownTimer = 0;
 
-        // Detect enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-
-        // Damage each enemy
-        foreach (Collider2D enemy in hitEnemies)
-        {
-            Debug.Log("Hit: " + enemy.name);
-            // enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
-        }
+        yield return new WaitForSeconds(AttackDuration);
+        Hitbox.SetActive(false);
     }
-
+    public void Disable_Hitbox()
+    {
+        Hitbox.SetActive(false);
+    }
 }

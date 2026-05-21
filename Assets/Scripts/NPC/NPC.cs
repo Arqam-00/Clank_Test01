@@ -14,6 +14,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private TMP_InputField playerInput;
     [SerializeField] private Button sendButton;
+    [SerializeField] private PlayerMovement PS;
 
     [Header("NPC Personality")]
     [TextArea]
@@ -32,9 +33,6 @@ public class NPC : MonoBehaviour
     {
         dialoguePanel.SetActive(false);
 
-        playerInput.gameObject.SetActive(false);
-        sendButton.gameObject.SetActive(false);
-
         sendButton.onClick.AddListener(SendMessageToNPC);
     }
 
@@ -42,12 +40,14 @@ public class NPC : MonoBehaviour
     {
         if (playerNearby && Input.GetKeyDown(KeyCode.W))
         {
+            PS.Freeze();
             OpenDialogue();
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CloseDialogue();
+            PS.UnFreeze();
         }
 
         if (dialoguePanel.activeSelf &&
@@ -61,9 +61,6 @@ public class NPC : MonoBehaviour
     {
         dialoguePanel.SetActive(true);
 
-        playerInput.gameObject.SetActive(true);
-        sendButton.gameObject.SetActive(true);
-
         dialogueText.text = "Hello traveler.";
 
         playerInput.ActivateInputField();
@@ -72,9 +69,7 @@ public class NPC : MonoBehaviour
     private void CloseDialogue()
     {
         dialoguePanel.SetActive(false);
-
-        playerInput.gameObject.SetActive(false);
-        sendButton.gameObject.SetActive(false);
+        PS.UnFreeze();
     }
 
     public void SendMessageToNPC()
@@ -93,7 +88,7 @@ public class NPC : MonoBehaviour
 
         string fullPrompt =
             npcContext +
-            "\nPlayer: " + playerMessage +
+            "\nPlayer: " + playerMessage + "Reply with word limit of 20 to 50 words from the NPC's prespective" +
             "\nNPC:";
 
         string jsonBody =
@@ -280,6 +275,7 @@ public class NPC : MonoBehaviour
             playerNearby = false;
 
             CloseDialogue();
+            PS.UnFreeze();
         }
     }
 }

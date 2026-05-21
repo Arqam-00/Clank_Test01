@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     private float dashTimeLeft;
     private float dashCooldownTimer;
 
+    //Freeze the movements of player
+    public bool Freeze_ = false;
+
     private void Awake()
     {
         //Grab references for rigidbody and animator from object
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (Freeze_) return;
         //Dash timer
         if (isDashing)
         {
@@ -152,5 +156,15 @@ public class PlayerMovement : MonoBehaviour
     public void PushUp(float force)
     {
         body.linearVelocity = new Vector2(body.linearVelocity.x, force);
+    }
+    public void Freeze()
+    {
+        anim.SetBool("Run", false);
+        body.linearVelocity = Vector3.zero;
+        Freeze_ = true;
+    }
+    public void UnFreeze()
+    {
+        Freeze_ = false;
     }
 }

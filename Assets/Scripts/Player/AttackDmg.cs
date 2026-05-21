@@ -8,9 +8,10 @@ public class AttackDmg : MonoBehaviour
     {
         if (collision != null && collision.tag == "Enemy")
         {
+            collision.GetComponent<EnemyHealth>().TakeDamage(Attack_dmg);
             Debug.Log("Enemy hit :" +  collision.gameObject.name);
         }
         if(collision != null)
-            Debug.Log("Enemy hit :" + collision.gameObject.name);
+            Debug.Log("Non Enemy hit :" + collision.gameObject.name);
     }
 }

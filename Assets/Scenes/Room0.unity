@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   previousRoom: {fileID: 1218701044}
-  nextRoom: {fileID: 2130283633}
+  nextRoom: {fileID: 1018082362}
   cam: {fileID: 519420033}
 --- !u!50 &186630426
 Rigidbody2D:
@@ -2474,6 +2474,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3555473475907456044, guid: c1772362c59e810428c7b482328150c2, type: 3}
   m_PrefabInstance: {fileID: 1639671294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &437509397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437509398}
+  m_Layer: 0
+  m_Name: Rightedge
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437509398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437509397}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.82, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1261249541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438074879
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,7 +2914,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.7230024, y: -0.09851575}
+  m_Offset: {x: -1.7230024, y: -0.15065074}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2893,7 +2924,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.377699, y: 0.9913602}
+  m_Size: {x: 4.377699, y: 0.67855215}
   m_EdgeRadius: 0
 --- !u!114 &508310744
 MonoBehaviour:
@@ -5071,9 +5102,23 @@ Transform:
   - {fileID: 994090134}
   - {fileID: 1903042283}
   - {fileID: 1042819826}
-  - {fileID: 1929407629}
   m_Father: {fileID: 1901086538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &814021752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3942496939533042317, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+  m_PrefabInstance: {fileID: 2494291494138393537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &814021753 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 165505807205511765, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+  m_PrefabInstance: {fileID: 2494291494138393537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &814021755 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+  m_PrefabInstance: {fileID: 2494291494138393537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &818471046
 GameObject:
   m_ObjectHideFlags: 0
@@ -6696,6 +6741,7 @@ Transform:
   - {fileID: 985932344}
   - {fileID: 580428584}
   - {fileID: 1295948338}
+  - {fileID: 1929407629}
   m_Father: {fileID: 1901086538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1023589429
@@ -6820,6 +6866,69 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.81234264, y: 3.1768231}
   m_EdgeRadius: 0
+--- !u!1 &1036292357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1036292358}
+  m_Layer: 0
+  m_Name: Leftedge
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1036292358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036292357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.93, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1261249541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1040442088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1040442089}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1040442089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040442088}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05591, y: 5.73077, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1261249541}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041281152
 GameObject:
   m_ObjectHideFlags: 0
@@ -8219,6 +8328,59 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1261249539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1261249541}
+  - component: {fileID: 1261249540}
+  m_Layer: 0
+  m_Name: EnemyPatrol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1261249540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261249539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dbd6a4fb2fa4b549a3ab1ba6c413908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrol
+  leftEdge: {fileID: 1036292358}
+  rightEdge: {fileID: 437509398}
+  enemy: {fileID: 814021752}
+  speed: 1
+  idleDuration: 0
+  anim: {fileID: 814021753}
+--- !u!4 &1261249541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261249539}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.67083, y: 0.065859795, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1036292358}
+  - {fileID: 437509398}
+  - {fileID: 814021755}
+  m_Father: {fileID: 1040442089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1265256959
 GameObject:
   m_ObjectHideFlags: 0
@@ -12089,11 +12251,11 @@ Transform:
   m_GameObject: {fileID: 1929407627}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 9.59, z: 0}
+  m_LocalPosition: {x: -3.5, y: -0.40999985, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 813456127}
+  m_Father: {fileID: 1018082362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1929407630
 Rigidbody2D:
@@ -12206,6 +12368,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1096835844}
   playerInput: {fileID: 1341265747}
   sendButton: {fileID: 1958893665}
+  PS: {fileID: 2009798256}
   npcContext: You ara stuch here in  dungeon with the player,the only way out of
     this room is through a door, but the door is jammed and need heat to remove since
     you dont have any mana ,you ask the player to learn fireball and open the door.Unlike
@@ -12457,7 +12620,7 @@ GameObject:
   - component: {fileID: 2009798254}
   - component: {fileID: 2009798256}
   - component: {fileID: 2009798257}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -13353,6 +13516,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1096835844}
   playerInput: {fileID: 1341265747}
   sendButton: {fileID: 1958893665}
+  PS: {fileID: 2009798256}
   npcContext: 'You are confused how the traveler made it to this room ,can he use
     fireball anyway Player is not gonna escape this room, he is trapped in this dungeon
     forever and ever(The prsonality of this NPC is that he has lost his mind trapped
@@ -13678,6 +13842,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1772362c59e810428c7b482328150c2, type: 3}
+--- !u!1001 &2494291494138393537
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1261249541}
+    m_Modifications:
+    - target: {fileID: 879074713455348751, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: enemyPatrol
+      value: 
+      objectReference: {fileID: 1261249540}
+    - target: {fileID: 1811563059286825412, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3942496939533042317, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_Name
+      value: MeleeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.06492
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5633702
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5060543800815313275, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d543d117285d7b489e5d02c2a83973c, type: 3}
 --- !u!1001 &3465981224705690955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13947,3 +14176,4 @@ SceneRoots:
   - {fileID: 1651166621}
   - {fileID: 1901086538}
   - {fileID: 522918434}
+  - {fileID: 1040442089}

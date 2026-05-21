@@ -18,12 +18,11 @@ public class MeleeEnemy : MonoBehaviour
     //References
     private Animator anim;
     private Health playerHealth;
-    private EnemyPatrol enemyPatrol;
+    [SerializeField] private EnemyPatrol enemyPatrol;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
     private void Update()
@@ -42,6 +41,7 @@ public class MeleeEnemy : MonoBehaviour
 
         if (enemyPatrol != null)
             enemyPatrol.enabled = !PlayerInSight();
+            Debug.Log(enemyPatrol);
     }
 
     private bool PlayerInSight()

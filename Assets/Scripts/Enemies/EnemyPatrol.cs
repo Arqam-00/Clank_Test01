@@ -7,12 +7,12 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private Transform rightEdge;
 
     [Header("Enemy")]
-    [SerializeField] private Transform enemy;
+    [SerializeField] private GameObject enemy;
 
     [Header("Movement parameters")]
     [SerializeField] private float speed;
     private Vector3 initScale;
-    private bool movingLeft;
+    private bool movingLeft = true;
 
     [Header("Idle Behaviour")]
     [SerializeField] private float idleDuration;
@@ -23,7 +23,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Awake()
     {
-        initScale = enemy.localScale;
+        initScale = enemy.transform.localScale;
     }
     private void OnDisable()
     {
@@ -34,14 +34,14 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (movingLeft)
         {
-            if (enemy.position.x >= leftEdge.position.x)
+            if (enemy.transform.position.x >= leftEdge.position.x)
                 MoveInDirection(-1);
             else
                 DirectionChange();
         }
         else
         {
-            if (enemy.position.x <= rightEdge.position.x)
+            if (enemy.transform.position.x <= rightEdge.position.x)
                 MoveInDirection(1);
             else
                 DirectionChange();
@@ -63,11 +63,9 @@ public class EnemyPatrol : MonoBehaviour
         anim.SetBool("moving", true);
 
         //Make enemy face direction
-        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction,
-            initScale.y, initScale.z);
+        enemy.transform.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
 
         //Move in that direction
-        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
-            enemy.position.y, enemy.position.z);
+        enemy.transform.position = new Vector3(enemy.transform.position.x + Time.deltaTime * _direction * speed,enemy.transform.position.y, enemy.transform.position.z);
     }
 }

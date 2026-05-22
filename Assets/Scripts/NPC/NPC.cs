@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -15,20 +16,20 @@ public class NPC : MonoBehaviour
     [SerializeField] private TMP_InputField playerInput;
     [SerializeField] private Button sendButton;
     [SerializeField] private PlayerMovement PS;
+    [SerializeField] private AudioClip NPC_Vioce;
+    [SerializeField] private string rep = "";
 
     [Header("NPC Personality")]
     [TextArea]
-    [SerializeField]
-    private string npcContext =
-        "You are a friendly fantasy blacksmith named Borin.";
+    [SerializeField] private string npcContext = "You are an NPC who loves 67.";
 
     [Header("Groq API Key")]
     [SerializeField]
-    private string apiKey = "YOUR_GROQ_API_KEY";
+    private string apiKey = "";
 
-    private const string endpoint =
-        "https://api.groq.com/openai/v1/chat/completions";
+    private const string endpoint = "https://api.groq.com/openai/v1/chat/completions";
 
+    private List<string> conversationHistory = new List<string>();
     private void Awake()
     {
         dialoguePanel.SetActive(false);
@@ -78,6 +79,8 @@ public class NPC : MonoBehaviour
 
         if (!string.IsNullOrEmpty(playerMessage))
         {
+            SoundManager.instance.PlaySound(NPC_Vioce);
+
             StartCoroutine(GetGroqResponse(playerMessage));
         }
     }
@@ -86,8 +89,11 @@ public class NPC : MonoBehaviour
     {
         dialogueText.text = "Thinking...";
 
-        string fullPrompt =
-            npcContext +
+        conversationHistory.Add("Player: " + playerMessage);
+
+        string history = string.Join("\n", conversationHistory);
+
+        string fullPrompt = npcContext +"\n"+ history +
             "\nPlayer: " + playerMessage + "Reply with word limit of 20 to 50 words from the NPC's prespective" +
             "\nNPC:";
 
@@ -104,17 +110,13 @@ public class NPC : MonoBehaviour
 
         Debug.Log(jsonBody);
 
-        UnityWebRequest request =
-            new UnityWebRequest(endpoint, "POST");
+        UnityWebRequest request = new UnityWebRequest(endpoint, "POST");
 
-        byte[] bodyRaw =
-            Encoding.UTF8.GetBytes(jsonBody);
+        byte[] bodyRaw =  Encoding.UTF8.GetBytes(jsonBody);
 
-        request.uploadHandler =
-            new UploadHandlerRaw(bodyRaw);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
 
-        request.downloadHandler =
-            new DownloadHandlerBuffer();
+        request.downloadHandler = new DownloadHandlerBuffer();
 
         request.SetRequestHeader(
             "Content-Type",
@@ -131,14 +133,11 @@ public class NPC : MonoBehaviour
         Debug.Log("STATUS: " + request.responseCode);
         Debug.Log(request.downloadHandler.text);
 
-        if (request.result ==
-            UnityWebRequest.Result.Success)
+        if (request.result == UnityWebRequest.Result.Success)
         {
-            string response =
-                request.downloadHandler.text;
+            string response =request.downloadHandler.text;
 
-            string aiText =
-                ExtractContent(response);
+            string aiText = ExtractContent(response);
 
             if (!string.IsNullOrEmpty(aiText))
             {
@@ -146,8 +145,13 @@ public class NPC : MonoBehaviour
             }
             else
             {
-                dialogueText.text =
-                    GetFallbackDialogue(playerMessage);
+                dialogueText.text = GetFallbackDialogue(playerMessage);
+            }
+            if (!string.IsNullOrEmpty(aiText))
+            {
+                dialogueText.text = aiText;
+
+                conversationHistory.Add("NPC: " + aiText);
             }
         }
         else
@@ -155,8 +159,7 @@ public class NPC : MonoBehaviour
             Debug.LogError(request.error);
             Debug.LogError(request.downloadHandler.text);
 
-            dialogueText.text =
-                GetFallbackDialogue(playerMessage);
+            dialogueText.text = GetFallbackDialogue(playerMessage);
         }
 
         playerInput.text = "";
@@ -230,11 +233,7 @@ public class NPC : MonoBehaviour
 
     private string EscapeJson(string text)
     {
-        return text
-            .Replace("\\", "\\\\")
-            .Replace("\"", "\\\"")
-            .Replace("\n", "\\n")
-            .Replace("\r", "");
+        return text.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "");
     }
 
     private string GetFallbackDialogue(string playerMessage)
@@ -247,17 +246,8 @@ public class NPC : MonoBehaviour
             return "Greetings traveler.";
         }
 
-        if (playerMessage.Contains("here"))
-        {
-            return "I forge the finest weapons in the kingdom.";
-        }
 
-        if (playerMessage.Contains("bye"))
-        {
-            return "Safe travels.";
-        }
-
-        return "The forge is hot today.";
+        return rep;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

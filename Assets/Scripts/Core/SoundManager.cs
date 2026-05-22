@@ -27,7 +27,12 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySound(AudioClip _sound)
     {
-        soundSource.PlayOneShot(_sound);
+        if (_sound != null)
+            soundSource.PlayOneShot(_sound);
+        else
+        {
+            Debug.Log("shound was null");
+        }
     }
 
     //public void ChangeSoundVolume(float _change)

@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour
     [SerializeField] private GameObject Hitbox;
     [SerializeField] private float AttackDuration = 1.25f;
 
+    [SerializeField] private AudioClip AttackSound;
     private Animator Anim;
     private PlayerMovement PlayerMovement;
     private float CooldownTimer = Mathf.Infinity;
@@ -29,6 +30,7 @@ public class Attack : MonoBehaviour
             CooldownTimer > AttackCooldown &&
             PlayerMovement.canAttack())
         {
+            SoundManager.instance.PlaySound(AttackSound);
             StartCoroutine(Attack_());
         }
 

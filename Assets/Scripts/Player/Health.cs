@@ -92,6 +92,7 @@ public class Health : MonoBehaviour
 
                 dead = true;
                 SoundManager.instance.PlaySound(deathSound);
+                Respawn();
             }
         }
     }
@@ -121,6 +122,7 @@ public class Health : MonoBehaviour
     //Respawn
     public void Respawn()
     {
+        GetComponent<PlayerState>().player_respawn();
         AddHealth(maxHealth);
         anim.ResetTrigger("die");
         anim.Play("Idle");
@@ -143,9 +145,9 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-    private void increasemaxHealth(float maxHealth_)
+    public void increasemaxHealth(float maxHealth_)
     {
-        maxHealth = maxHealth_;
+        maxHealth += maxHealth_;
         currentHealth = maxHealth;
     }
 }

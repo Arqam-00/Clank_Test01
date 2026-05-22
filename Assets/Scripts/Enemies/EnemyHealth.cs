@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
-            // SoundManager.instance.PlaySound(hurtSound);
+            SoundManager.instance.PlaySound(hurtSound);
         }
         else
         {
@@ -51,7 +51,8 @@ public class EnemyHealth : MonoBehaviour
                 anim.SetTrigger("die");
 
                 dead = true;
-                // SoundManager.instance.PlaySound(deathSound);
+                SoundManager.instance.PlaySound(deathSound);
+                
             }
         }
     }

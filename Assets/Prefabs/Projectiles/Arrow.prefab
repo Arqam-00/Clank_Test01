@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2912595708635233216}
   - component: {fileID: 5040408739097962611}
   - component: {fileID: 4355594676745844027}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Arrow
-  m_TagString: Enemy
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 321256131
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2429919002490121231, guid: b7623cbf41faf1343858f23ced8ba6cf, type: 3}

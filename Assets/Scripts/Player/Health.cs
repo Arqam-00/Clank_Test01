@@ -44,8 +44,6 @@ public class Health : MonoBehaviour
                 health_mp = 0;
                 anim.SetTrigger("Healed");
                 heal(1);
-                healing = false;
-                PS.UnFreeze();
             }
         }
         else if (Input.GetKeyDown(KeyCode.F) && PS.isGrounded())

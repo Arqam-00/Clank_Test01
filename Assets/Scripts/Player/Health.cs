@@ -23,9 +23,11 @@ public class Health : MonoBehaviour
     [SerializeField] private Behaviour[] components;
     private bool invulnerable;
 
-    //[Header("Death Sound")]
-    //[SerializeField] private AudioClip deathSound;
-    //[SerializeField] private AudioClip hurtSound;
+    [Header("Death Sound")]
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip hurtSound;
+    [SerializeField] private AudioClip healSound;
+
 
     private void Awake()
     {
@@ -44,6 +46,7 @@ public class Health : MonoBehaviour
                 health_mp = 0;
                 anim.SetTrigger("Healed");
                 heal(1);
+                SoundManager.instance.PlaySound(deathSound);
             }
         }
         else if (Input.GetKeyDown(KeyCode.F) && PS.isGrounded())
@@ -51,6 +54,7 @@ public class Health : MonoBehaviour
             anim.SetBool("Healing", true);
             healing = true;
             PS.Freeze();
+            health_mp = 0;
         }
         if(Input.GetKeyUp(KeyCode.F)) {
         
@@ -58,6 +62,7 @@ public class Health : MonoBehaviour
             health_mp = 0;
             PS.UnFreeze();
             anim.SetTrigger("Healed");
+            healing = false;
         }
     }
     public void TakeDamage(float _damage)
@@ -69,7 +74,10 @@ public class Health : MonoBehaviour
         {
             anim.SetTrigger("hurt");
             StartCoroutine(Invunerability());
-            //SoundManager.instance.PlaySound(hurtSound);
+            if (hurtSound != null)
+            {
+                SoundManager.instance.PlaySound(hurtSound);
+            }
         }
         else
         {
@@ -83,7 +91,7 @@ public class Health : MonoBehaviour
                 anim.SetTrigger("die");
 
                 dead = true;
-                //SoundManager.instance.PlaySound(deathSound);
+                SoundManager.instance.PlaySound(deathSound);
             }
         }
     }

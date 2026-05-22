@@ -37,14 +37,12 @@ public class Attack : MonoBehaviour
 
     private IEnumerator Attack_()
     {
-        Hitbox.SetActive(true);
-
         if (PlayerMovement.isGrounded())
             Anim.SetTrigger("Attack");
         else
             Anim.SetTrigger("Jmp_Attack");
         CooldownTimer = 0;
-
+        Hitbox.SetActive(true);
         yield return new WaitForSeconds(AttackDuration);
         Hitbox.SetActive(false);
     }
